@@ -2,12 +2,13 @@ package monsters;
 
 import Equipment.MonsterWeaponType;
 import behaviours.IMonster;
+import behaviours.IMonsterWeapon;
 
-public class Monster {
+public class Monster implements IMonster {
     private int hp;
-    private IMonster weapon;
+    private IMonsterWeapon weapon;
 
-    public Monster(int hp, IMonster weapon) {
+    public Monster(int hp, IMonsterWeapon weapon) {
         this.hp = hp;
         this.weapon = weapon;
 

@@ -1,9 +1,9 @@
 package monsters;
 
-import behaviours.IMonster;
+import behaviours.IMonsterWeapon;
 
 public class Troll extends Monster{
-    public Troll(int hp, IMonster weapon) {
+    public Troll(int hp, IMonsterWeapon weapon) {
         super(hp, weapon);
     }
 }

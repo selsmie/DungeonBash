@@ -2,8 +2,7 @@ package behaviours;
 
 import Equipment.MonsterWeaponType;
 
-public interface IMonster {
-    int getHp();
-    MonsterWeaponType getMonsterWeapon();
+public interface IMonsterWeapon {
+    MonsterWeaponType getWeaponType();
     int getWeaponDamage();
 }
