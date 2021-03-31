@@ -2,11 +2,12 @@ package adventurers;
 
 import Equipment.FamiliarType;
 import Equipment.SpellType;
-import behaviours.IAttack;
+
 import behaviours.IFamiliar;
+import behaviours.IFighter;
 import behaviours.ISpell;
 
-public abstract class Spellcaster extends Person {
+public abstract class Spellcaster extends Person implements IFighter {
 
     ISpell spell;
     IFamiliar familiar;
@@ -29,7 +30,7 @@ public abstract class Spellcaster extends Person {
         return this.familiar.getHealth();
     }
 
-    public int getSpellDamage(){
+    public int getWeaponDamage(){
         return this.spell.getSpellDamage();
     }
 

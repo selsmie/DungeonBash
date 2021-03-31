@@ -2,10 +2,11 @@ package room;
 
 import Equipment.MonsterWeaponType;
 import behaviours.IMonster;
+import behaviours.IRoom;
 import monsters.Monster;
 
 
-public class MonsterRoom extends Room {
+public class MonsterRoom extends Room implements IRoom {
 
     private Monster monster;
 

@@ -1,9 +1,10 @@
 package adventurers;
 
 import Equipment.HealingToolType;
+import behaviours.IFighter;
 import behaviours.IHeal;
 
-public class Cleric extends Person {
+public class Cleric extends Person implements IFighter {
 
     private IHeal heal;
     private double holyAura;
@@ -24,5 +25,9 @@ public class Cleric extends Person {
 
     public void changeHealingTool(IHeal heal){
         this.heal = heal;
+    }
+
+    public int getWeaponDamage(){
+        return 0;
     }
 }

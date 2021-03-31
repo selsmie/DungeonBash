@@ -1,5 +1,7 @@
 package room;
 
+import behaviours.IRoom;
+
 public abstract class Room {
     private double treasure;
     private String name;
