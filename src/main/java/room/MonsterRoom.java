@@ -2,15 +2,20 @@ package room;
 
 import Equipment.MonsterWeaponType;
 import behaviours.IMonster;
+import monsters.Monster;
 
 
 public class MonsterRoom extends Room {
 
-    private IMonster monster;
+    private Monster monster;
 
-    public MonsterRoom(String name, IMonster monster) {
+    public MonsterRoom(String name, Monster monster) {
         super(name);
         this.monster = monster;
+    }
+
+    public Monster getMonster(){
+        return this.monster;
     }
 
     public int getMonsterHp() {

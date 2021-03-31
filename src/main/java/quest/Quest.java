@@ -1,9 +1,9 @@
 package quest;
 
-import adventurers.Cleric;
-import adventurers.Fighter;
-import adventurers.Person;
-import adventurers.Spellcaster;
+import adventurers.*;
+import behaviours.IDefend;
+import monsters.Monster;
+import room.MonsterRoom;
 import room.Room;
 
 public class Quest {
@@ -28,5 +28,47 @@ public class Quest {
 
     public String getRoomName() {
        return room.getRoomName();
+    }
+
+    public int getMonsterAttack() {
+        int damage = 0;
+        if (this.room instanceof MonsterRoom){
+            damage = (((MonsterRoom) this.room).getWeaponDamage());
+        }
+        return damage;
+    }
+
+    public int getPlayerAttack() {
+        if (this.player instanceof Fighter){
+            return (((Fighter) this.player).getWeaponDamage());
+        } else if (this.player instanceof Spellcaster){
+            return (((Spellcaster) this.player).getSpellDamage());
+        } else {
+            return 0;
+        }
+    }
+
+    public int getPlayerHp() {
+        return (((Person) this.player).getHp());
+    }
+
+    public void monsterAttacksPlayer() {
+        int monsterAttack = this.getMonsterAttack();
+//        this.player.takesDamage(monsterAttack);
+        ((IDefend) this.player).takesDamage(monsterAttack);
+    }
+
+    public void playerAttack() {
+        int playerAttack = this.getPlayerAttack();
+        Monster monster = ((MonsterRoom) this.room).getMonster();
+        ((IDefend) monster).takesDamage(playerAttack);
+    }
+
+    public int getMonsterHp() {
+        int hp = 0;
+        if (this.room instanceof MonsterRoom){
+            hp = (((MonsterRoom) this.room).getMonsterHp());
+        }
+        return hp;
     }
 }

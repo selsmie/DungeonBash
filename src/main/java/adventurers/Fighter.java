@@ -1,6 +1,7 @@
 package adventurers;
 
 import Equipment.WeaponType;
+import behaviours.IAttack;
 import behaviours.IWeapon;
 
 public abstract class Fighter extends Person {

@@ -2,6 +2,7 @@ package adventurers;
 
 import Equipment.FamiliarType;
 import Equipment.SpellType;
+import behaviours.IAttack;
 import behaviours.IFamiliar;
 import behaviours.ISpell;
 

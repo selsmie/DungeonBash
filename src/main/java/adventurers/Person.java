@@ -1,6 +1,8 @@
 package adventurers;
 
-public abstract class Person {
+import behaviours.IDefend;
+
+public abstract class Person implements IDefend {
 
     private String name;
     private int hp;
@@ -16,6 +18,20 @@ public abstract class Person {
 
     public int getHp() {
         return hp;
+    }
+
+    protected void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public void takesDamage(int attack){
+        int hp = this.getHp();
+        if (attack >= hp){
+                this.setHp(0);
+        } else {
+                hp -= attack;
+                this.setHp(hp);
+        }
     }
 
 }
