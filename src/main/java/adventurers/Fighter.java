@@ -6,6 +6,7 @@ import behaviours.IWeapon;
 public abstract class Fighter extends Person {
     private IWeapon weapon;
 
+
     public Fighter(String name, int hp, IWeapon weapon) {
         super(name, hp);
         this.weapon = weapon;

@@ -36,7 +36,7 @@ public class MonsterRoomTest {
     }
 
     @Test
-    public void roomHastreasure(){
+    public void roomHasTreasure(){
         System.out.println("MonsterRoom: " + room.getTreasure());
     }
 
