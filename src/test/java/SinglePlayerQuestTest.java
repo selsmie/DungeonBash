@@ -4,12 +4,12 @@ import adventurers.Knight;
 import monsters.Troll;
 import org.junit.Before;
 import org.junit.Test;
-import quest.Quest;
+import quest.SinglePlayerQuest;
 import room.MonsterRoom;
 
 import static org.junit.Assert.assertEquals;
 
-public class QuestTest {
+public class SinglePlayerQuestTest {
 
     Knight knight;
     Cleric cleric;
@@ -17,8 +17,8 @@ public class QuestTest {
     MonsterRoom room;
     MonsterWeapon mWeapon;
     Weapon weapon;
-    Quest quest;
-    Quest quest1;
+    SinglePlayerQuest quest;
+    SinglePlayerQuest quest1;
     HealingTool healing;
     HealingTool healing2;
 
@@ -32,8 +32,8 @@ public class QuestTest {
         mWeapon = new MonsterWeapon(MonsterWeaponType.SPEAR);
         troll = new Troll(100, mWeapon);
         room = new MonsterRoom("Bridge", troll);
-        quest = new Quest(knight, room);
-        quest1 = new Quest(cleric, room);
+        quest = new SinglePlayerQuest(knight, room);
+        quest1 = new SinglePlayerQuest(cleric, room);
     }
 
     @Test

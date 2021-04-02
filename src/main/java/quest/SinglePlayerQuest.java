@@ -8,12 +8,12 @@ import monsters.Monster;
 import room.MonsterRoom;
 import room.Room;
 
-public class Quest {
+public class SinglePlayerQuest {
 
     IFighter player;
     IRoom room;
 
-    public Quest(IFighter player, IRoom room){
+    public SinglePlayerQuest(IFighter player, IRoom room){
         this.player = player;
         this.room = room;
     }

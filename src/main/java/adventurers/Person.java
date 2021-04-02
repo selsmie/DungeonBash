@@ -56,4 +56,6 @@ public abstract class Person implements IDefend, IFighter {
         }
     }
 
+
+
 }
