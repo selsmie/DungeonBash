@@ -1,19 +1,16 @@
 package quest;
 
-import adventurers.*;
 import behaviours.IDefend;
-import behaviours.IFighter;
+import behaviours.IPlayer;
 import behaviours.IRoom;
 import monsters.Monster;
-import room.MonsterRoom;
-import room.Room;
 
 public class SinglePlayerQuest {
 
-    IFighter player;
+    IPlayer player;
     IRoom room;
 
-    public SinglePlayerQuest(IFighter player, IRoom room){
+    public SinglePlayerQuest(IPlayer player, IRoom room){
         this.player = player;
         this.room = room;
     }

@@ -5,8 +5,6 @@ import Equipment.FamiliarType;
 import Equipment.Spell;
 import Equipment.SpellType;
 
-import behaviours.IFighter;
-
 public abstract class Spellcaster extends Person {
 
     Spell spell;

@@ -2,7 +2,7 @@ package adventurers;
 
 import Equipment.HealingTool;
 import Equipment.HealingToolType;
-import behaviours.IFighter;
+import behaviours.IPlayer;
 
 public class Cleric extends Person{
 
@@ -36,7 +36,7 @@ public class Cleric extends Person{
         super.takesDamage(attack);
     }
 
-    public void heals(IFighter player){
+    public void heals(IPlayer player){
         player.isHealed(this.getHealing());
     }
 }

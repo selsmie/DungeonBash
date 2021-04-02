@@ -5,7 +5,7 @@ import behaviours.IRoom;
 import monsters.Monster;
 
 
-public class MonsterRoom extends Room implements IRoom {
+public class MonsterRoom extends Room {
 
     private Monster monster;
 

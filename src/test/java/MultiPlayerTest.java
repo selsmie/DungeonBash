@@ -2,12 +2,9 @@ import Equipment.*;
 import adventurers.Dwarf;
 import adventurers.Knight;
 import adventurers.Warlock;
-import behaviours.IFighter;
 import org.junit.Before;
 import org.junit.Test;
 import quest.MultiPlayerQuest;
-
-import java.util.ArrayList;
 
 public class MultiPlayerTest {
 
@@ -25,20 +22,20 @@ public class MultiPlayerTest {
     public void before(){
         sword = new Weapon(WeaponType.SWORD);
         axe = new Weapon(WeaponType.AXE);
-        spell = new Spell(SpellType.ELDRITCHBLAST);
-        knight = new Knight("Tim", 50, sword);
-        dwarf = new Dwarf("Pete", 75, axe);
+        spell = new Spell(SpellType.FIREBALL);
+        knight = new Knight("Tim", 750, sword);
+        dwarf = new Dwarf("Pete", 1005, axe);
         cat = new Familiar(FamiliarType.DRAGON);
-        warlock = new Warlock("JimBob", 30, spell, cat);
+        warlock = new Warlock("JimBob", 500, spell, cat);
         quest = new MultiPlayerQuest();
         quest.addPlayerToPlayers(knight);
         quest.addPlayerToPlayers(dwarf);
         quest.addPlayerToPlayers(warlock);
-        quest.createDungeon();
+        quest.createDungeon(10);
     }
 
     @Test
     public void test(){
-        System.out.println(quest.battle());
+        quest.battle();
     }
 }

@@ -3,8 +3,6 @@ package adventurers;
 import Equipment.Weapon;
 import Equipment.WeaponType;
 
-import behaviours.IFighter;
-
 public abstract class Fighter extends Person {
     private Weapon weapon;
 

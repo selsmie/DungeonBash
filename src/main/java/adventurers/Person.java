@@ -1,9 +1,10 @@
 package adventurers;
 
 import behaviours.IDefend;
-import behaviours.IFighter;
+import behaviours.IPlayer;
+import monsters.Monster;
 
-public abstract class Person implements IDefend, IFighter {
+public abstract class Person implements IDefend, IPlayer {
 
 
     private String name;
@@ -30,13 +31,13 @@ public abstract class Person implements IDefend, IFighter {
         this.hp = hp;
     }
 
-    public void takesDamage(double attack){
+    public void takesDamage(double attack) {
         int hp = this.getHp();
-        if (attack >= hp){
-                this.setHp(0);
+        if (attack >= hp) {
+            this.setHp(0);
         } else {
-                hp -= attack;
-                this.setHp(hp);
+            hp -= attack;
+            this.setHp(hp);
         }
     }
 
@@ -48,14 +49,17 @@ public abstract class Person implements IDefend, IFighter {
         this.purse += treasure;
     }
 
-    public void isHealed(int healingCapacity){
-        if (healingCapacity + this.hp >= this.maxHp){
+    public void isHealed(int healingCapacity) {
+        if (healingCapacity + this.hp >= this.maxHp) {
             this.setHp(this.maxHp);
         } else {
             this.setHp(this.hp + healingCapacity);
         }
     }
 
+    public void attack(Monster monster, int attack) {
+        monster.takesDamage(attack);
+    }
 
 
 }

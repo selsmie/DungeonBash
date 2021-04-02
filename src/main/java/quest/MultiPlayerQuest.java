@@ -2,7 +2,7 @@ package quest;
 
 import Equipment.MonsterWeapon;
 import Equipment.MonsterWeaponType;
-import behaviours.IFighter;
+import behaviours.IPlayer;
 import behaviours.IRoom;
 import monsters.Kobold;
 import monsters.Monster;
@@ -17,7 +17,7 @@ import java.util.Random;
 
 public class MultiPlayerQuest {
 
-    private ArrayList<IFighter> players;
+    private ArrayList<IPlayer> players;
     private ArrayList<IRoom> rooms;
 
     public MultiPlayerQuest(){
@@ -25,7 +25,7 @@ public class MultiPlayerQuest {
         this.rooms = new ArrayList<>();
     }
 
-    public void addPlayerToPlayers(IFighter player){
+    public void addPlayerToPlayers(IPlayer player){
         this.players.add(player);
     }
 
@@ -33,9 +33,9 @@ public class MultiPlayerQuest {
         this.rooms.add(room);
     }
 
-    public ArrayList<IRoom> createDungeon(){
+    public ArrayList<IRoom> createDungeon(int levels){
         int counter = 0;
-        while (counter < 4) {
+        while (counter < levels) {
             this.addRoomToRooms(createRandomRoom());
             counter++;
         }
@@ -48,6 +48,7 @@ public class MultiPlayerQuest {
         int nameRandom = rand.nextInt(5);
         int monsterRandom = rand.nextInt(2);
 
+
         List<String> roomNames = Arrays.asList("Bridge", "Crypt", "Hall", "Bed Chamber", "Cavern");
 
         MonsterWeapon halberd = new MonsterWeapon(MonsterWeaponType.HALBERD);
@@ -56,10 +57,10 @@ public class MultiPlayerQuest {
         MonsterWeapon cudgel = new MonsterWeapon(MonsterWeaponType.CUDGEL);
         List<MonsterWeapon> mWeapons = Arrays.asList(halberd, spear, bow, cudgel);
 
-        Troll troll = new Troll(100, mWeapons.get(weaponRandom));
-        Kobold kobold = new Kobold(100, mWeapons.get(weaponRandom));
+        Troll troll = new Troll(1000, mWeapons.get(weaponRandom));
+        Kobold kobold = new Kobold(1000, mWeapons.get(weaponRandom));
 
-        List<Monster> monsters = Arrays.asList(troll, kobold);
+        List<Monster> monsters = Arrays.asList(kobold, troll);
 
         TreasureRoom tRoom = new TreasureRoom(roomNames.get(nameRandom));
         MonsterRoom mRoom = new MonsterRoom(roomNames.get(nameRandom), monsters.get(monsterRandom));
@@ -71,24 +72,62 @@ public class MultiPlayerQuest {
 
     public void battle(){
         for (IRoom room : this.rooms){
-            while (room.getMonsterHp() > 0) {
-                for (IFighter player : this.players) {
+
+            if (room.getMonsterHp() > 0 && this.players.size() > 0){
+                System.out.println("Monster!!! Let's attack!!!");
+            } else if (room.getMonsterHp() == 0 && this.players.size() > 0){
+                System.out.println("The room is empty search for treasure!");
+            } else if (this.players.size() == 0){
+                System.out.println("RIP");
+                break;
+            }
+            boolean alive = true;
+            while (room.getMonsterHp() > 0 && alive) {
+
+                for (IPlayer player : this.players) {
+
                     if (player.getHp() > 0) {
-                        player.attack(room.getMonster());
-                    } else {
-                        System.out.println(player.getName() + " dies...");
+                        player.attack(room.getMonster(), player.getWeaponDamage());
                     }
                 }
-                if (room.getMonsterHp() > 0) {
-                    room.monsterAttack(this.players);
-                    System.out.println(room.getMonster() + " Attacks");
+
+                for (int i = (this.players.size() - 1); i >= 0 ; i--){
+                    if (this.players.get(i).getHp() == 0){
+                        System.out.println(this.players.get(i).getName() + " died!");
+                        this.players.remove(this.players.get(i));
+                    }
                 }
+
+                if (this.players.size() == 0){
+                    alive = false;
+                    break;
+                }
+
+                if (room.getMonsterHp() > 0 && this.players.size() > 0) {
+                    Random random = new Random();
+                    int rand = random.nextInt(this.players.size());
+                    Monster monster = room.getMonster();
+                    monster.attack(this.players.get(rand), monster.getWeaponDamage());
+                }
+
             }
-            double treasure = room.getTreasure();
-            for (IFighter player : this.players){
-                player.addTreasureToPurse(treasure / this.players.size());
+            if (this.players.size() > 0){
+                double treasure = room.getTreasure();
+                for (IPlayer player : this.players){
+                    if (player.getHp() > 0) {
+                        player.addTreasureToPurse(treasure / this.players.size());
+                    }
+                }
+                System.out.println("Treasure collected");
             }
-            System.out.println("The room is clear");
         }
+
+
+        if (this.players.size() > 0){
+            System.out.println("You have completed the dungeon!");
+        }
+        this.rooms.clear();
+        this.players.clear();
+
     }
 }

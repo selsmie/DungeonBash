@@ -1,8 +1,11 @@
 package room;
 
 import Equipment.MonsterWeaponType;
+import behaviours.IPlayer;
 import behaviours.IRoom;
 import monsters.Monster;
+
+import java.util.ArrayList;
 
 public abstract class Room implements IRoom{
     private double treasure;
@@ -29,4 +32,6 @@ public abstract class Room implements IRoom{
     public abstract int getWeaponDamage();
 
     public abstract MonsterWeaponType getMonsterWeapon();
+
+
 }
