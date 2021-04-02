@@ -14,15 +14,9 @@ public class Wizard extends Spellcaster {
 
     public void takesDamage(double attack){
         double remainingAttackPWR = attack;
-        int hp = this.getHp();
         if (remainingAttackPWR > this.mageArmour){
             remainingAttackPWR -= this.mageArmour;
-            if (remainingAttackPWR >= hp){
-                this.setHp(0);
-            } else {
-                hp -= remainingAttackPWR;
-                this.setHp(hp);
-            }
+            super.takesDamage(remainingAttackPWR);
         }
     }
 }

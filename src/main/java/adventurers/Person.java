@@ -26,7 +26,7 @@ public abstract class Person implements IDefend, IFighter {
         return hp;
     }
 
-    protected void setHp(int hp) {
+    private void setHp(int hp) {
         this.hp = hp;
     }
 

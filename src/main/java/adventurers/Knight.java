@@ -18,15 +18,9 @@ public class Knight extends Fighter {
 
     public void takesDamage(double attack){
         double remainingAttackPWR = attack;
-        int hp = this.getHp();
         if (remainingAttackPWR > this.armour){
             remainingAttackPWR -= this.armour;
-            if (remainingAttackPWR >= hp){
-                this.setHp(0);
-            } else {
-                hp -= remainingAttackPWR;
-                this.setHp(hp);
-            }
+            super.takesDamage(remainingAttackPWR);
         }
     }
 

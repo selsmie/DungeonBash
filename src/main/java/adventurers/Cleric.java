@@ -34,7 +34,6 @@ public class Cleric extends Person{
     public void takesDamage(double attack){
         attack = attack / this.holyAura;
         super.takesDamage(attack);
-
     }
 
     public void heals(IFighter player){
