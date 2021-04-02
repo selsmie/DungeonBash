@@ -1,18 +1,18 @@
 package adventurers;
 
+import Equipment.Familiar;
 import Equipment.FamiliarType;
+import Equipment.Spell;
 import Equipment.SpellType;
 
-import behaviours.IFamiliar;
 import behaviours.IFighter;
-import behaviours.ISpell;
 
-public abstract class Spellcaster extends Person implements IFighter {
+public abstract class Spellcaster extends Person {
 
-    ISpell spell;
-    IFamiliar familiar;
+    Spell spell;
+    Familiar familiar;
 
-    public Spellcaster(String name, int hp, ISpell spell, IFamiliar familiar) {
+    public Spellcaster(String name, int hp, Spell spell, Familiar familiar) {
         super(name, hp);
         this.spell = spell;
         this.familiar = familiar;
@@ -34,7 +34,7 @@ public abstract class Spellcaster extends Person implements IFighter {
         return this.spell.getSpellDamage();
     }
 
-    public void changeSpell(ISpell spell){
+    public void changeSpell(Spell spell){
         this.spell = spell;
     }
 }

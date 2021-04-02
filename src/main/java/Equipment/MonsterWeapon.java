@@ -1,8 +1,6 @@
 package Equipment;
 
-import behaviours.IMonsterWeapon;
-
-public class MonsterWeapon implements IMonsterWeapon {
+public class MonsterWeapon {
     MonsterWeaponType monsterWeaponType;
 
     public MonsterWeapon(MonsterWeaponType monsterWeaponType){

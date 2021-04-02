@@ -1,15 +1,15 @@
 package adventurers;
 
+import Equipment.HealingTool;
 import Equipment.HealingToolType;
 import behaviours.IFighter;
-import behaviours.IHeal;
 
-public class Cleric extends Person implements IFighter {
+public class Cleric extends Person{
 
-    private IHeal heal;
+    private HealingTool heal;
     private double holyAura;
 
-    public Cleric(String name, int hp,IHeal heal) {
+    public Cleric(String name, int hp, HealingTool heal) {
         super(name, hp);
         this.heal = heal;
         this.holyAura = 1.5;
@@ -23,11 +23,21 @@ public class Cleric extends Person implements IFighter {
         return this.heal.getHealing();
     }
 
-    public void changeHealingTool(IHeal heal){
+    public void changeHealingTool(HealingTool heal){
         this.heal = heal;
     }
 
     public int getWeaponDamage(){
         return 0;
+    }
+
+    public void takesDamage(double attack){
+        attack = attack / this.holyAura;
+        super.takesDamage(attack);
+
+    }
+
+    public void heals(IFighter player){
+        player.isHealed(this.getHealing());
     }
 }

@@ -1,8 +1,10 @@
 package Adventurer;
 
+import Equipment.Weapon;
 import adventurers.Cleric;
 import Equipment.HealingTool;
 import Equipment.HealingToolType;
+import adventurers.Knight;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,6 +15,7 @@ public class ClericTest {
     Cleric cleric;
     HealingTool healingTool;
     HealingTool healingTool1;
+
 
     @Before
     public void before(){
@@ -46,4 +49,6 @@ public class ClericTest {
         cleric.changeHealingTool(healingTool1);
         assertEquals(HealingToolType.HERB, cleric.getHealingTool());
     }
+
+
 }

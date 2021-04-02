@@ -1,15 +1,15 @@
 package adventurers;
 
+import Equipment.Weapon;
 import Equipment.WeaponType;
 
 import behaviours.IFighter;
-import behaviours.IWeapon;
 
-public abstract class Fighter extends Person implements IFighter {
-    private IWeapon weapon;
+public abstract class Fighter extends Person {
+    private Weapon weapon;
 
 
-    public Fighter(String name, int hp, IWeapon weapon) {
+    public Fighter(String name, int hp, Weapon weapon) {
         super(name, hp);
         this.weapon = weapon;
     }
@@ -22,7 +22,7 @@ public abstract class Fighter extends Person implements IFighter {
         return weapon.getWeaponDamage();
     }
 
-    public void changeWeapon(IWeapon weapon){
+    public void changeWeapon(Weapon weapon){
         this.weapon = weapon;
     }
 }

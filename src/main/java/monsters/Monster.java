@@ -1,15 +1,15 @@
 package monsters;
 
+import Equipment.MonsterWeapon;
 import Equipment.MonsterWeaponType;
 import behaviours.IDefend;
-import behaviours.IMonster;
-import behaviours.IMonsterWeapon;
 
-public class Monster implements IMonster, IDefend {
+
+public class Monster implements IDefend {
     private int hp;
-    private IMonsterWeapon weapon;
+    private MonsterWeapon weapon;
 
-    public Monster(int hp, IMonsterWeapon weapon) {
+    public Monster(int hp, MonsterWeapon weapon) {
         this.hp = hp;
         this.weapon = weapon;
 
@@ -31,7 +31,7 @@ public class Monster implements IMonster, IDefend {
         return this.weapon.getWeaponDamage();
     }
 
-    public void takesDamage(int attack){
+    public void takesDamage(double attack){
         int hp = this.getHp();
         if (attack >= hp){
             this.setHp(0);

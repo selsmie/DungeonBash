@@ -1,8 +1,6 @@
 package Equipment;
 
-import behaviours.IHeal;
-
-public class HealingTool implements IHeal {
+public class HealingTool {
 
     private HealingToolType healingToolType;
 

@@ -19,13 +19,6 @@ public class Quest {
     }
 
     public String getPlayerName() {
-//        if (this.player instanceof Fighter){
-//            return (((Fighter) this.player).getName());
-//        } else if (this.player instanceof Spellcaster){
-//            return (((Spellcaster) this.player).getName());
-//        } else {
-//            return (((Cleric) this.player).getName());
-//        }
         return this.player.getName();
     }
 
@@ -34,22 +27,10 @@ public class Quest {
     }
 
     public int getMonsterAttack() {
-//        int damage = 0;
-//        if (this.room instanceof MonsterRoom){
-//            damage = (((MonsterRoom) this.room).getWeaponDamage());
-//        }
-//        return damage;
         return this.room.getWeaponDamage();
     }
 
     public int getPlayerAttack() {
-//        if (this.player instanceof Fighter){
-//            return (((Fighter) this.player).getWeaponDamage());
-//        } else if (this.player instanceof Spellcaster){
-//            return (((Spellcaster) this.player).getSpellDamage());
-//        } else {
-//            return 0;
-//        }
         return this.player.getWeaponDamage();
     }
 
@@ -59,7 +40,6 @@ public class Quest {
 
     public void monsterAttacksPlayer() {
         int monsterAttack = this.getMonsterAttack();
-//        this.player.takesDamage(monsterAttack);
         ((IDefend) this.player).takesDamage(monsterAttack);
     }
 
@@ -70,11 +50,19 @@ public class Quest {
     }
 
     public int getMonsterHp() {
-//        int hp = 0;
-//        if (this.room instanceof MonsterRoom){
-//            hp = (((MonsterRoom) this.room).getMonsterHp());
-//        }
-//        return hp;
         return this.room.getMonsterHp();
+    }
+
+    public String battle(){
+        while (this.getPlayerHp() > 0 && this.getMonsterHp() > 0){
+            this.playerAttack();
+            this.monsterAttacksPlayer();
+        }
+        if (this.getPlayerHp() == 0){
+            return this.player.getName() + " dies...";
+        } else {
+            this.player.addTreasureToPurse(this.room.getTreasure());
+            return this.player.getName() + " has defeated the Monster";
+        }
     }
 }

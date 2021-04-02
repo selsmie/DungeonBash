@@ -7,4 +7,5 @@ public interface IRoom {
     int getMonsterHp();
     Monster getMonster();
     String getRoomName();
+    double getTreasure();
 }

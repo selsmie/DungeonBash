@@ -1,8 +1,6 @@
 package Equipment;
 
-import behaviours.IWeapon;
-
-public class Weapon implements IWeapon {
+public class Weapon  {
 
     WeaponType weaponType;
 

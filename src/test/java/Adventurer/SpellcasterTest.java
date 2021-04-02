@@ -62,7 +62,7 @@ public class SpellcasterTest {
 
     @Test
     public void hasSpellDamage(){
-        assertEquals(18, warlock.getWeaponDamage());
+        assertEquals(36, warlock.getWeaponDamage());
         assertEquals(87, wizard.getWeaponDamage());
     }
 

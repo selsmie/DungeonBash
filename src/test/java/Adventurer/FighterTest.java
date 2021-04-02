@@ -54,7 +54,7 @@ public class FighterTest {
     public void weaponHasDamage() {
         assertEquals(15, knight.getWeaponDamage());
         assertEquals(20, dwarf.getWeaponDamage());
-        assertEquals(10, barbarian.getWeaponDamage());
+        assertEquals(20, barbarian.getWeaponDamage());
     }
 
     @Test
@@ -62,5 +62,24 @@ public class FighterTest {
         knight.changeWeapon(axe);
         assertEquals(WeaponType.AXE, knight.getWeapon());
     }
+
+    @Test
+    public void purseStartsEmpty(){
+        assertEquals(0, dwarf.getPurse(), 0.0);
+    }
+
+    @Test
+    public void purseCanAddTreasure() {
+        knight.addTreasureToPurse(10);
+        assertEquals(10, knight.getPurse(), 0.0);
+    }
+
+    @Test
+    public void dwarfDoublesTreasure() {
+        dwarf.addTreasureToPurse(10);
+        assertEquals(20, dwarf.getPurse(), 0.0);
+    }
+
+
 
 }

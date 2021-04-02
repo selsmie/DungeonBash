@@ -1,8 +1,6 @@
 package Equipment;
 
-import behaviours.IFamiliar;
-
-public class Familiar implements IFamiliar {
+public class Familiar  {
     FamiliarType familiar;
 
     public Familiar(FamiliarType familiar){

@@ -1,7 +1,6 @@
 package room;
 
 import Equipment.MonsterWeaponType;
-import behaviours.IMonster;
 import behaviours.IRoom;
 import monsters.Monster;
 

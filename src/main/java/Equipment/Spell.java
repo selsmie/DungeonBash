@@ -1,8 +1,6 @@
 package Equipment;
 
-import behaviours.ISpell;
-
-public class Spell implements ISpell {
+public class Spell  {
 
     SpellType spellType;
 
