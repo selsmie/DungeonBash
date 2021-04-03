@@ -70,48 +70,42 @@ public class MultiPlayerQuest {
         return randomRoom.get(monsterRandom);
     }
 
+
+
     public void battle(){
         for (IRoom room : this.rooms){
 
             if (room.getMonsterHp() > 0 && this.players.size() > 0){
                 System.out.println("Monster!!! Let's attack!!!");
+                while (room.getMonsterHp() > 0) {
+
+                    for (IPlayer player : this.players) {
+                        if (player.getHp() > 0) {
+                            player.attack(room.getMonster(), player.getWeaponDamage());
+                        }
+                    }
+
+                    if (room.getMonsterHp() > 0 && this.players.size() > 0) {
+                        Random random = new Random();
+                        int rand = random.nextInt(this.players.size());
+                        Monster monster = room.getMonster();
+                        monster.attack(this.players.get(rand), monster.getWeaponDamage());
+                    }
+
+                    for (int i = (this.players.size() - 1); i >= 0 ; i--){
+                        if (this.players.get(i).getHp() == 0){
+                            System.out.println(this.players.get(i).getName() + " died!");
+                            this.players.remove(this.players.get(i));
+                        }
+                    }
+
+                    if (this.players.size() == 0){
+                        break;
+                    }
+
+                }
             } else if (room.getMonsterHp() == 0 && this.players.size() > 0){
                 System.out.println("The room is empty search for treasure!");
-            } else if (this.players.size() == 0){
-                System.out.println("RIP");
-                break;
-            }
-            boolean alive = true;
-            while (room.getMonsterHp() > 0 && alive) {
-
-                for (IPlayer player : this.players) {
-
-                    if (player.getHp() > 0) {
-                        player.attack(room.getMonster(), player.getWeaponDamage());
-                    }
-                }
-
-                for (int i = (this.players.size() - 1); i >= 0 ; i--){
-                    if (this.players.get(i).getHp() == 0){
-                        System.out.println(this.players.get(i).getName() + " died!");
-                        this.players.remove(this.players.get(i));
-                    }
-                }
-
-                if (this.players.size() == 0){
-                    alive = false;
-                    break;
-                }
-
-                if (room.getMonsterHp() > 0 && this.players.size() > 0) {
-                    Random random = new Random();
-                    int rand = random.nextInt(this.players.size());
-                    Monster monster = room.getMonster();
-                    monster.attack(this.players.get(rand), monster.getWeaponDamage());
-                }
-
-            }
-            if (this.players.size() > 0){
                 double treasure = room.getTreasure();
                 for (IPlayer player : this.players){
                     if (player.getHp() > 0) {
@@ -119,15 +113,25 @@ public class MultiPlayerQuest {
                     }
                 }
                 System.out.println("Treasure collected");
+            } else if (this.players.size() == 0){
+                break;
             }
         }
-
-
         if (this.players.size() > 0){
             System.out.println("You have completed the dungeon!");
+            this.survived();
+        } else {
+            System.out.println("RIP. Better luck next time...");
         }
         this.rooms.clear();
         this.players.clear();
+    }
 
+    public void survived(){
+        for (IPlayer player : this.players){
+            if (player.getHp() > 0){
+                System.out.println(player.getName() + " survived!");
+            }
+        }
     }
 }

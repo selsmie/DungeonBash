@@ -23,15 +23,15 @@ public class MultiPlayerTest {
         sword = new Weapon(WeaponType.SWORD);
         axe = new Weapon(WeaponType.AXE);
         spell = new Spell(SpellType.FIREBALL);
-        knight = new Knight("Tim", 750, sword);
-        dwarf = new Dwarf("Pete", 1005, axe);
+        knight = new Knight("Tim", 75, sword);
+        dwarf = new Dwarf("Pete", 105, axe);
         cat = new Familiar(FamiliarType.DRAGON);
-        warlock = new Warlock("JimBob", 500, spell, cat);
+        warlock = new Warlock("JimBob", 50, spell, cat);
         quest = new MultiPlayerQuest();
         quest.addPlayerToPlayers(knight);
         quest.addPlayerToPlayers(dwarf);
         quest.addPlayerToPlayers(warlock);
-        quest.createDungeon(10);
+        quest.createDungeon(4);
     }
 
     @Test
