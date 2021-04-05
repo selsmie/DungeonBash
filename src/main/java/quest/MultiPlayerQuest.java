@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class MultiPlayerQuest {
 
@@ -73,10 +74,10 @@ public class MultiPlayerQuest {
 
 
     public void battle(){
+        int counter = 1;
         for (IRoom room : this.rooms){
-
             if (room.getMonsterHp() > 0 && this.players.size() > 0){
-                System.out.println("Monster!!! Let's attack!!!");
+                System.out.println("Room " + counter + ": Monster!!! Let's attack!!!");
                 while (room.getMonsterHp() > 0) {
 
                     for (IPlayer player : this.players) {
@@ -92,12 +93,26 @@ public class MultiPlayerQuest {
                         monster.attack(this.players.get(rand), monster.getWeaponDamage());
                     }
 
-                    for (int i = (this.players.size() - 1); i >= 0 ; i--){
-                        if (this.players.get(i).getHp() == 0){
-                            System.out.println(this.players.get(i).getName() + " died!");
-                            this.players.remove(this.players.get(i));
+//                    for (int i = (this.players.size() - 1); i >= 0 ; i--){
+//                        if (this.players.get(i).getHp() == 0){
+//                            System.out.println(this.players.get(i).getName() + " died!");
+//                            this.players.remove(this.players.get(i));
+//                        }
+//                    }
+
+//                    List<IPlayer> filtered = this.players.stream()
+//                            .filter(player -> player.getHp() == 0)
+//                            .collect(Collectors.toList());
+//
+//                    this.players.remove(filtered);
+
+                    for (IPlayer player : this.players){
+                        if (player.getHp() == 0){
+                            System.out.println(player.getName() + " dies!");
                         }
                     }
+
+                    this.players.removeIf(player -> player.getHp() == 0);
 
                     if (this.players.size() == 0){
                         break;
@@ -105,7 +120,7 @@ public class MultiPlayerQuest {
 
                 }
             } else if (room.getMonsterHp() == 0 && this.players.size() > 0){
-                System.out.println("The room is empty search for treasure!");
+                System.out.println("Room " + counter + ": The room is empty search for treasure!");
                 double treasure = room.getTreasure();
                 for (IPlayer player : this.players){
                     if (player.getHp() > 0) {
@@ -116,6 +131,7 @@ public class MultiPlayerQuest {
             } else if (this.players.size() == 0){
                 break;
             }
+            counter++;
         }
         if (this.players.size() > 0){
             System.out.println("You have completed the dungeon!");
